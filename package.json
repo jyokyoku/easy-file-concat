@@ -1,0 +1,43 @@
+{
+  "name": "easy-file-concat",
+  "version": "0.1.0",
+  "description": "Concatenate multiple files easily.",
+  "main": "index.js",
+  "engines": {
+    "node": ">=10"
+  },
+  "bin": {
+    "easy-file-concat": "cmd.js"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jyokyoku/easy-file-concat.git"
+  },
+  "keywords": [
+    "concat",
+    "npm",
+    "files",
+    "multiple",
+    "combine",
+    "merge"
+  ],
+  "author": "jyokyoku <jyokyoku@gmail.com> (https://devlog.to)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jyokyoku/easy-file-concat/issues"
+  },
+  "homepage": "https://github.com/jyokyoku/easy-file-concat#readme",
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "mkdirp": "^1.0.3"
+  }
+}

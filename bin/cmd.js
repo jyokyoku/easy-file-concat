@@ -129,6 +129,4 @@ if (configFile) {
 	inputFiles = mergedFiles;
 }
 
-console.log(inputFiles);
-
 require('../')(inputFiles, outputFile, boundary);

@@ -31,11 +31,13 @@ module.exports = (inputFiles, outputFile, boundary = '') => {
 		files.forEach((file, i) => {
 			file = path.resolve(file);
 
-			try {
-				results.push(fs.readFileSync(file));
+			if (fs.statSync(file).isFile()) {
+				try {
+					results.push(fs.readFileSync(file));
 
-			} catch (e) {
-				console.log(e);
+				} catch (e) {
+					console.log(e);
+				}
 			}
 		})
 	});

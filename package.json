@@ -7,7 +7,7 @@
     "node": ">=10"
   },
   "bin": {
-    "easy-file-concat": "cmd.js"
+    "easy-file-concat": "bin/cmd.js"
   },
   "directories": {
     "test": "test"

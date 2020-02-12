@@ -8,7 +8,7 @@ module.exports = (inputFiles, outputFile, boundary = '') => {
 		inputFiles = inputFiles.split(',');
 
 	} else if (!Array.isArray(inputFiles)) {
-		throw new TypeError(`Invalid type '$(typeof inputFiles)' of the 'inputFiles' variable.`);
+		throw new TypeError(`Invalid type '` + typeof inputFiles + `' of the 'inputFiles' variable.`);
 	}
 
 	let results = [];

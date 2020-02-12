@@ -103,3 +103,23 @@ test('Glob test', () => {
 
 	expect(fileData).toBe(`Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies necpellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.`);
 });
+
+test('Directory test', () => {
+	mkdirp.sync(inputDir);
+	mkdirp.sync(outputDir);
+
+	const file1 = path.join(inputDir, 'sample1.txt');
+	const file2 = path.join(inputDir, 'sample2.txt');
+
+	fs.writeFileSync(file1, `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec`);
+
+	fs.writeFileSync(file2, `pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.`);
+
+	const outputFile = path.join(outputDir, 'output.txt');
+
+	easyFileConcat(inputDir, outputFile);
+
+	const fileData = fs.readFileSync(outputFile, 'utf8');
+
+	expect(fileData).toBe(`Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies necpellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.`);
+});

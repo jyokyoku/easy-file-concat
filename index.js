@@ -21,6 +21,9 @@ module.exports = (inputFiles, outputFile, boundary = '') => {
 		if (inputFile.indexOf('*') >= 0) {
 			files = glob.sync(inputFile);
 
+		} else if (fs.statSync(inputFile).isDirectory()) {
+			files = glob.sync(path.join(inputFile, '**/*'));
+
 		} else {
 			files.push(inputFile);
 		}

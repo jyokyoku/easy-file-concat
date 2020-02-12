@@ -7,7 +7,7 @@ let skip = false;
 
 let inputFiles = [];
 let outputFile;
-let configKey;
+let configKey = [];
 let configFile;
 let boundary;
 
@@ -63,7 +63,7 @@ process.argv.slice(2).filter((arg) => {
 		configFile = arg;
 
 	} else if (mode === 'configKey') {
-		configKey = arg;
+		configKey.push(arg);
 
 	} else if (mode === 'boundary') {
 		boundary = arg;
@@ -101,16 +101,34 @@ if (configFile) {
 		process.exit(1);
 	}
 
-	configKey.split('.').forEach((key, i) => {
-		if (!config[key]) {
-			console.error(`The specified key '${configKey}' is not found in the config file '${configFile}'.`);
-			process.exit(1);
-		}
+	let mergedFiles = [];
 
-		config = config[key];
+	configKey.forEach((_configKey) => {
+		let runtimeConfig = Object.assign({}, config);
+
+		_configKey.split('.').forEach((keyPart) => {
+			if (!runtimeConfig[keyPart]) {
+				console.error(`The specified key '${_configKey}' is not found in the config file '${configFile}'.`);
+
+			} else {
+				runtimeConfig = runtimeConfig[keyPart];
+			}
+		});
+
+		if (typeof runtimeConfig === 'string') {
+			mergedFiles.push(runtimeConfig);
+
+		} else if (Array.isArray(runtimeConfig)) {
+			mergedFiles = mergedFiles.concat(runtimeConfig);
+
+		} else {
+			console.error(`The config value of '${_configKey}' is invalid type '` + (typeof runtimeConfig) +  `.`);
+		}
 	});
 
-	inputFiles = config;
+	inputFiles = mergedFiles;
 }
+
+console.log(inputFiles);
 
 require('../')(inputFiles, outputFile, boundary);

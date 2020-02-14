@@ -122,7 +122,7 @@ if (configFile) {
 			mergedFiles = mergedFiles.concat(runtimeConfig);
 
 		} else {
-			console.error(`The config value of '${_configKey}' is invalid type '` + (typeof runtimeConfig) +  `.`);
+			console.error(`The config value of '${_configKey}' is invalid type '` + (typeof runtimeConfig) + `.`);
 		}
 	});
 
